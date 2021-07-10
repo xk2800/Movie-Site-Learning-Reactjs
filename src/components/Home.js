@@ -20,10 +20,12 @@ import NoImage from '../images/no_image.jpg';
 
 const Home = () => {
 
-    const{ state, loading, error, searchTerm, setSearchTerm } = useHomeFetch();
+    const{ state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore } = useHomeFetch();
     ////note: dual setSearchTerm to trigger delay on search
 
     console.log(state);
+
+    if(error) return <div>Something went wrong...</div>
 
 
     return (
@@ -64,7 +66,7 @@ const Home = () => {
             {loading  && <Spinner /> } {/*this shows spinner if data is loading */}
 
             {state.page < state.total_pages && !loading && ( //check current page is less than total pages then need load more button, and check no data loading which shows spinner
-                <Button text='Load More' />
+                <Button text='Load More' callback={() => setIsLoadingMore(true)}/>
             )}
         </>         /*Fragment */
     );

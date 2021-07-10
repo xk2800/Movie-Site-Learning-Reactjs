@@ -13,10 +13,11 @@ const initialState = {
 
 export const useHomeFetch = () => {
 
-    const [searchTerm, setSearchTerm] = useState('');
+    const [searchTerm, setSearchTerm] = useState(''); //used for search
     const [state, setState] = useState(initialState);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false); //loading state
+    const [error, setError] = useState(false); //for errors
+    const [isLoadingMore, setIsLoadingMore] = useState(false); //when fetching more data
 
     console.log(searchTerm);
 
@@ -46,8 +47,16 @@ export const useHomeFetch = () => {
         setState(initialState); //reset old state before making new search
         fetchMovies(1, searchTerm); //1 is because just want to fetch 1st page
 
-
     },[searchTerm]/*Dependency array for useEffect. if empty array then it will only run once*/) //searchTerm will trigger this useEffect each time searchTerm changes & trigger once on mount
 
-    return { state, loading, error, searchTerm, setSearchTerm };
+    //Load more
+    useEffect(() => {
+        if(!isLoadingMore) return; //this useEffect won't trigger if no extra loading(more)
+
+        fetchMovies(state.page + 1, searchTerm); //+1 bcs want to load another page. searchTerm added in case its used in search term
+        setIsLoadingMore(false); //to return to initial state
+
+    },[isLoadingMore, searchTerm, state.page] /*this only triggers when isLoadingMore is changing*/)
+
+    return { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore };
 };
