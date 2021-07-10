@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 //helpers
 import {calcTime, convertMoney} from '../../helpers';
 
@@ -24,5 +26,11 @@ const MovieInfoBar = ({ time, budget, revenue }) => (
     </Wrapper>
 
 );
+
+MovieInfoBar.propType = {
+    time: PropTypes.number,
+    budget: PropTypes.number,
+    revenue: PropTypes.number
+}
 
 export default MovieInfoBar;

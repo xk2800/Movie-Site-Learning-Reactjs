@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 //styles
 import { Wrapper, Content } from "./SearchBar.styles";
 
@@ -41,5 +43,9 @@ const SearchBar = ({ setSearchTerm }) => {
         </Wrapper>
     );
 };
+
+SearchBar.propTypes = {
+    callback: PropTypes.func
+}
 
 export default SearchBar;

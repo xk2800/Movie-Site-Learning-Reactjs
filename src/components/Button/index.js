@@ -1,5 +1,6 @@
 //styles
 import { Wrapper } from "./Button.styles";
+import PropTypes from 'prop-types';
 
 const Button = ({ text, callback }) => (
 
@@ -7,5 +8,10 @@ const Button = ({ text, callback }) => (
         {text}
     </Wrapper>
 );
+
+Button.propTypes = {
+    text: PropTypes.string,
+    callback: PropTypes.func
+}
 
 export default Button;
