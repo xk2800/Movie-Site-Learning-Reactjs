@@ -1,5 +1,4 @@
 //config
-import { useState, useEffect } from 'react';
 import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from '../config';
 
 //API
@@ -9,6 +8,7 @@ import API from '../API';
 import HeroImage from './HeroImage';
 import Grid from './Grid';
 import Thumb from './Thumb';
+import Spinner from './Spinner';
 
 //hooks
 import { useHomeFetch } from '../hooks/useHomeFetch';
@@ -57,6 +57,7 @@ const Home = () => {
                     />
                 ))}
             </Grid>
+            <Spinner />
         </>         /*Fragment */
     );
 };
