@@ -7,6 +7,7 @@ import API from '../API';
 
 //components
 import HeroImage from './HeroImage';
+import Grid from './Grid';
 
 //hooks
 import { useHomeFetch } from '../hooks/useHomeFetch';
@@ -39,7 +40,12 @@ const Home = () => {
                 /> 
             ): null 
             }
-
+            
+            <Grid header='Popular Movies'>
+                {state.results.map(movie => (
+                    <div key={movie.id}>{movie.title}</div>
+                ))}
+            </Grid>
         </>         /*Fragment */
     );
 };
