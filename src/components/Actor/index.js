@@ -1,7 +1,7 @@
 //styles
 import { Wrapper, Image } from "./Actor.styles";
 
-const Actor = ({ name, charactor: character, imageUrl }) => (
+const Actor = ({ name, character: character, imageUrl }) => (
 
     <Wrapper>
         <Image src={imageUrl} alt='actor-thumb' />
