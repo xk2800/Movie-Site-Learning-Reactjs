@@ -1,13 +1,17 @@
 import RMDBLogo from '../../images/react-movie-logo.svg';
 import TMDBLogo from '../../images/tmdb_logo.svg';
 
+import { Link } from 'react-router-dom';
+
 import { Wrapper, Content, LogoImg, TMDBLogoImg } from './Header.styles';
 
 /*export*/ const Header = () => (
 
     <Wrapper>
         <Content>
-            <LogoImg src={RMDBLogo} alt="RMDB-logo" />
+            <Link to='/'>
+                <LogoImg src={RMDBLogo} alt="RMDB-logo" />
+            </Link>
             <TMDBLogoImg src={TMDBLogo} alt="TMDB-logo" />
         </Content>
     </Wrapper>
