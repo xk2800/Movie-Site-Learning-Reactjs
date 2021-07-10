@@ -13,9 +13,12 @@ const initialState = {
 
 export const useHomeFetch = () => {
 
+    const [searchTerm, setSearchTerm] = useState('');
     const [state, setState] = useState(initialState);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
+
+    console.log(searchTerm);
 
     const fetchMovies = async (page, searchTerm = "") => { //page = gets page, searchTerm = input from user
         
@@ -45,5 +48,5 @@ export const useHomeFetch = () => {
 
     },[]/*Dependency array for useEffect. if empty array then it will only run once*/)
 
-    return { state, loading, error };
+    return { state, loading, error, setSearchTerm };
 };
