@@ -8,6 +8,7 @@ import Grid from './Grid';
 import Spinner from './Spinner';
 import Breadcrumb from './Breadcrumb';
 import MovieInfo from './MovieInfo';
+import MovieInfoBar from './MovieInfoBar';
 
 //hook
 import { useMovieFetch } from '../hooks/useMovieFetch';
@@ -30,7 +31,11 @@ const Movie = () => {
         <>
             <Breadcrumb movieTitle={movie.original_title} />
             <MovieInfo movie={movie} />
-
+            <MovieInfoBar 
+                time={movie.runtime} 
+                budget={movie.budget} 
+                revenue={movie.revenue} 
+            />
         </>
     )
 
