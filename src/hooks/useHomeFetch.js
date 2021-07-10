@@ -41,12 +41,13 @@ export const useHomeFetch = () => {
         setLoading(false); //to stop loading state
     };
 
-    //initial render
+    //initial and search...search term and initial mount can use same useEffect bcs on search & 1st mount, both only need 1st page data
     useEffect(() => {
-        fetchMovies(1); //1 is because just want to fetch 1st page
+        setState(initialState); //reset old state before making new search
+        fetchMovies(1, searchTerm); //1 is because just want to fetch 1st page
 
 
-    },[]/*Dependency array for useEffect. if empty array then it will only run once*/)
+    },[searchTerm]/*Dependency array for useEffect. if empty array then it will only run once*/) //searchTerm will trigger this useEffect each time searchTerm changes & trigger once on mount
 
-    return { state, loading, error, setSearchTerm };
+    return { state, loading, error, searchTerm, setSearchTerm };
 };

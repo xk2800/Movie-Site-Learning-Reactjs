@@ -19,7 +19,7 @@ import NoImage from '../images/no_image.jpg';
 
 const Home = () => {
 
-    const{ state, loading, error, setSearchTerm } = useHomeFetch();
+    const{ state, loading, error, searchTerm, setSearchTerm } = useHomeFetch();
     ////note: dual setSearchTerm to trigger delay on search
 
     console.log(state);
@@ -34,7 +34,7 @@ const Home = () => {
 
             {/* OR */}
 
-            { state.results[0] ?( 
+            { !searchTerm && state.results[0] ?( //grabs 1st content from API //!searchTerm used to make heroimage hidden when search is made
                 <HeroImage 
                     image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[0].backdrop_path}`} //used to get image url from API, takes most popular //THIS IS TEMPLATE LITERAL
                     title={state.results[0].original_title}
@@ -45,9 +45,9 @@ const Home = () => {
             }
 
             <SearchBar setSearchTerm={setSearchTerm} />
-            <Grid header='Popular Movies'>
+            <Grid header={searchTerm ? 'Search Result' : 'Popular Movies'}> {/*if there's a search, Search Result shown, otherwise is Popular Movies */}
                 {state.results.map(movie => (
-                    // <div key={movie.id}>{movie.title}</div>
+                    // <div key={movie.id}>{movie.title}</div> //temp output movie title
                     <Thumb 
                         key={movie.id}
                         clickable
