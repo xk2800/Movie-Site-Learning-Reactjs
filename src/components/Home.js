@@ -2,7 +2,7 @@
 import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from '../config';
 
 //API
-import API from '../API';
+//import API from '../API';
 
 //components
 import HeroImage from './HeroImage';
