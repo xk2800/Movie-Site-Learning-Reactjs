@@ -10,6 +10,7 @@ import Grid from './Grid';
 import Thumb from './Thumb';
 import Spinner from './Spinner';
 import SearchBar from './SearchBar';
+import Button from './Button';
 
 //hooks
 import { useHomeFetch } from '../hooks/useHomeFetch';
@@ -60,7 +61,11 @@ const Home = () => {
                     />
                 ))}
             </Grid>
-            <Spinner />
+            {loading  && <Spinner /> } {/*this shows spinner if data is loading */}
+
+            {state.page < state.total_pages && !loading && ( //check current page is less than total pages then need load more button, and check no data loading which shows spinner
+                <Button text='Load More' />
+            )}
         </>         /*Fragment */
     );
 };
