@@ -3,6 +3,9 @@ import { useState, useEffect } from 'react';
 //API
 import API from '../API';
 
+//helpers
+import { isPersistedState } from '../helpers';
+
 //used to reset stuff
 const initialState = {
     page: 0,
@@ -44,10 +47,22 @@ export const useHomeFetch = () => {
 
     //initial and search...search term and initial mount can use same useEffect bcs on search & 1st mount, both only need 1st page data
     useEffect(() => {
+
+        //used for session storage //check session state b4 get data from api
+        if(!searchTerm){ //check if search is ongoing, if true, sessionstate will no happen
+            const sessionState = isPersistedState('homestate');
+
+            if(sessionState){
+                console.log("Grabbing from session storage");
+                setState(sessionState);
+                return;
+            }
+        }
+
+        console.log("Grabbing from API");
         setState(initialState); //reset old state before making new search
         fetchMovies(1, searchTerm); //1 is because just want to fetch 1st page
-
-    },[searchTerm]/*Dependency array for useEffect. if empty array then it will only run once*/) //searchTerm will trigger this useEffect each time searchTerm changes & trigger once on mount
+    },[searchTerm]/*Dependency array for useEffect. if empty array then it will only run once*/); //searchTerm will trigger this useEffect each time searchTerm changes & trigger once on mount
 
     //Load more
     useEffect(() => {
@@ -57,6 +72,11 @@ export const useHomeFetch = () => {
         setIsLoadingMore(false); //to return to initial state
 
     },[isLoadingMore, searchTerm, state.page] /*this only triggers when isLoadingMore is changing*/)
+
+    //write to session storage
+    useEffect(() => {
+        if(!searchTerm) sessionStorage.setItem('homestate', JSON.stringify(state));
+    }, [searchTerm, state])
 
     return { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore };
 };
