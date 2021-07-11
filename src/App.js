@@ -10,16 +10,21 @@ import NotFound from './components/NotFound';
 //Routes
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+//Context
+import UserProvider from './context';
+
 const App = () => ( 
 
     <Router>
-        <Header/>
-        <Routes>
-            <Route path='/' element={<Home/>} />
-            <Route path='/:movieId' element={<Movie/>} />
-            <Route path='/*' element={<NotFound/>} />
-        </Routes>
-        <GlobalStyle />
+        <UserProvider>
+            <Header/>
+            <Routes>
+                <Route path='/' element={<Home/>} />
+                <Route path='/:movieId' element={<Movie/>} />
+                <Route path='/*' element={<NotFound/>} />
+            </Routes>
+            <GlobalStyle />
+        </UserProvider>
     </Router>
 );
 
