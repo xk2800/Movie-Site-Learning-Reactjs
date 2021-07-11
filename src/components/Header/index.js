@@ -5,16 +5,36 @@ import { Link } from 'react-router-dom';
 
 import { Wrapper, Content, LogoImg, TMDBLogoImg } from './Header.styles';
 
-/*export*/ const Header = () => (
+import { Context } from '../../context';
+import { useContext } from 'react';
 
-    <Wrapper>
-        <Content>
-            <Link to='/'>
-                <LogoImg src={RMDBLogo} alt="RMDB-logo" />
-            </Link>
-            <TMDBLogoImg src={TMDBLogo} alt="TMDB-logo" />
-        </Content>
-    </Wrapper>
-);
+/*export*/ const Header = () => {
+
+    const [user] = useContext(Context);
+    console.log(user);
+
+    return (
+
+        <Wrapper>
+            <Content>
+                <Link to='/'>
+                    <LogoImg src={RMDBLogo} alt="RMDB-logo" />
+                </Link>
+                {
+                    user ? (
+                        <span className="loggedin">Logged in as: {user.username}</span>
+                    ) : (
+                        <Link to='/login' >
+                            <span className="login">Login</span>
+                        </Link>
+                    )
+                }
+
+                <TMDBLogoImg src={TMDBLogo} alt="TMDB-logo" />
+            </Content>
+        </Wrapper>
+    );
+
+}
 
 export default Header;
