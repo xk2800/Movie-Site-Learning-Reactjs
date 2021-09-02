@@ -5,7 +5,7 @@ import Thumb from '../Thumb';
 import Rate from '../Rate';
 
 //config
-import { API_KEY, IMAGE_BASE_URL, POSTER_SIZE} from '../../config';
+import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
 
 //image
 import NoImage from '../../images/no_image.jpg';
@@ -27,8 +27,8 @@ const MovieInfo = ({ movie }) => {
     const handleRating = async value => { //value from range slider
         const rate = await API.rateMovie(user.sessionId, movie.id, value);
         console.log(rate);
-        <div>Success</div>
-    }
+        <div>Success</div>;
+    };
 
     return (
         <Wrapper backdrop={movie.backdrop_path}>
@@ -40,7 +40,7 @@ const MovieInfo = ({ movie }) => {
                             : NoImage
                     }
                     clickable={false}
-                    />
+                />
                 <Text>
                     <h1>{movie.title}</h1>
                     <h3>PLOT</h3>
@@ -52,17 +52,17 @@ const MovieInfo = ({ movie }) => {
                             <div className="score">{movie.vote_average}</div>
                         </div>
                         <div className="director">
-                            <h3>DIRECTOR{ movie.directors.length > 1 ? 's': ''}</h3> {/*Check for singular or plural */}
+                            <h3>DIRECTOR{movie.directors.length > 1 ? 's' : ''}</h3> {/*Check for singular or plural */}
                             {movie.directors.map(director => (
                                 <p key={director.credit_id}>{director.name}</p>
                             ))}
                         </div>
                     </div>
 
-                    {user && ( 
+                    {user && (
                         <div>
                             <p>Rate Movie</p>
-                            <Rate callBack={handleRating}/>
+                            <Rate callBack={handleRating} />
                         </div>
                     )}
                 </Text>
@@ -74,5 +74,5 @@ const MovieInfo = ({ movie }) => {
 
 MovieInfo.propTypes = {
     movie: PropTypes.object
-}
+};
 export default MovieInfo;
