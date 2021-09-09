@@ -20,12 +20,12 @@ import NoImage from '../images/no_image.jpg';
 
 const Home = () => {
 
-    const{ state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore } = useHomeFetch();
+    const { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore } = useHomeFetch();
     ////note: dual setSearchTerm to trigger delay on search
 
     console.log(state);
 
-    if(error) return <div>Something went wrong...</div>
+    if (error) return <div>Something went wrong...</div>;
 
 
     return (
@@ -37,21 +37,21 @@ const Home = () => {
 
             {/* OR */}
 
-            { !searchTerm && state.results[0] ?( //grabs 1st content from API //!searchTerm used to make heroimage hidden when search is made
-                <HeroImage 
+            {!searchTerm && state.results[0] ? ( //grabs 1st content from API //!searchTerm used to make heroimage hidden when search is made
+                <HeroImage
                     image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[0].backdrop_path}`} //used to get image url from API, takes most popular //THIS IS TEMPLATE LITERAL
                     title={state.results[0].original_title}
                     text={state.results[0].overview}
-                    //note: backdrop_path, original_title, overview are from API
-                /> 
-            ): null 
+                //note: backdrop_path, original_title, overview are from API
+                />
+            ) : null
             }
 
             <SearchBar setSearchTerm={setSearchTerm} />
             <Grid header={searchTerm ? 'Search Result' : 'Popular Movies'}> {/*if there's a search, Search Result shown, otherwise is Popular Movies */}
                 {state.results.map(movie => (
                     // <div key={movie.id}>{movie.title}</div> //temp output movie title
-                    <Thumb 
+                    <Thumb
                         key={movie.id}
                         clickable
                         image={
@@ -63,10 +63,10 @@ const Home = () => {
                     />
                 ))}
             </Grid>
-            {loading  && <Spinner /> } {/*this shows spinner if data is loading */}
+            {loading && <Spinner />} {/*this shows spinner if data is loading */}
 
             {state.page < state.total_pages && !loading && ( //check current page is less than total pages then need load more button, and check no data loading which shows spinner
-                <Button text='Load More' callback={() => setIsLoadingMore(true)}/>
+                <Button text='Load More' callback={() => setIsLoadingMore(true)} />
             )}
         </>         /*Fragment */
     );

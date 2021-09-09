@@ -7,6 +7,8 @@ import {GlobalStyle} from './GlobalStyle';
 import Movie from './components/Movie';
 import NotFound from './components/NotFound';
 import Login from './components/Login';
+import Footer from './components/Footer'
+
 //Routes
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -24,6 +26,7 @@ const App = () => (
                 <Route path='/:movieId' element={<Movie/>} />
                 <Route path='/*' element={<NotFound/>} />
             </Routes>
+            <Footer />
             <GlobalStyle />
         </UserProvider>
     </Router>
