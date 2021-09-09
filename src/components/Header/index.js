@@ -20,7 +20,7 @@ import { useContext } from 'react';
                 <Link to='/'>
                     <LogoImg src={RMDBLogo} alt="RMDB-logo" />
                 </Link>
-                {
+                {/* {
                     user ? (
                         <span className="loggedin">Logged in as: {user.username}</span>
                     ) : (
@@ -28,7 +28,7 @@ import { useContext } from 'react';
                             <span className="login">Login</span>
                         </Link>
                     )
-                }
+                } */}
 
                 <TMDBLogoImg src={TMDBLogo} alt="TMDB-logo" />
             </Content>

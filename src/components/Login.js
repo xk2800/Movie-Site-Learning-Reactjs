@@ -40,6 +40,7 @@ const Login = () => {
 
 
         } catch (error) {
+            console.log(error);
             setError(true);
         }
     };
@@ -62,8 +63,9 @@ const Login = () => {
                 name="username"
                 onChange={handleInput}
             />
+            <label>Password</label>
             <input
-                type="password"
+                type="text"
                 value={password}
                 name="password"
                 onChange={handleInput}
